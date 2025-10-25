@@ -1,17 +1,19 @@
 # 🩸 Blood Bank Management System
 
-The Blood Bank Management System is a web-based application built using **Django** that helps manage blood donors, recipients, blood stock, and hospital requests efficiently. Its main goal is to ensure easy access to blood availability and smooth coordination between donors and blood banks.
+The **Blood Bank Management System** is a Django-based web application designed to manage blood donors, recipients, blood inventory, and requests from hospitals efficiently.  
+Its goal is to ensure quick availability of blood and streamline communication between donors and blood banks.
 
 ---
 
-## 🚀 Features
+## ✨ Features
 
-- ✅ Donor registration and management  
-- ✅ Blood group tracking and stock management  
-- ✅ Hospital/user request for blood units  
-- ✅ Admin dashboard for monitoring  
-- ✅ Search donors by blood group and location  
-- ✅ Secure login and authentication  
+- ✅ Donor registration & management  
+- ✅ Blood stock tracking by blood group  
+- ✅ Hospital/request management system  
+- ✅ Admin dashboard for monitoring & approval  
+- ✅ Search donors by blood group & location  
+- ✅ Secure user authentication & authorization  
+- ✅ Fully responsive UI  
 
 ---
 
@@ -20,9 +22,10 @@ The Blood Bank Management System is a web-based application built using **Django
 | Component | Technology |
 |----------|------------|
 | Frontend | HTML, CSS, Bootstrap |
-| Backend | Python (Django Framework) |
-| Database | SQLite / MySQL (configurable) |
+| Backend | Python (Django) |
+| Database | SQLite (default) / MySQL (optional) |
 
 
-## Authors
-Ansaar SathiqBatcha
+## 🧑‍💻 Authors
+Ansaar Sathiq Batcha – Developer
+Mr. Selvam – Trainer/Guide
