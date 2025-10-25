@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Blood Stock</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #e74c3c;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #c0392b;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            width: 60%;
+            margin: 40px auto;
+            background-color: white;
+            padding: 30px;
+            box-shadow: 0 0 15px #ccc;
+            border-radius: 8px;
+        }
+        h2 {
+            text-align: center;
+            color: #e74c3c;
+        }
+        form {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        select, input[type="number"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 45%;
+        }
+        button {
+            padding: 12px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #c0392b;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background-color: #e74c3c;
+            color: white;
+        }
+        .messages {
+            text-align: center;
+            color: green;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Blood Bank Management System</h1>
+    </header>
+    <nav>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'donor_signup' %}">Donor Signup</a>
+        <a href="{% url 'donor_login' %}">Donor Login</a>
+        <a href="{% url 'patient_signup' %}">Patient Signup</a>
+        <a href="{% url 'patient_login' %}">Patient Login</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    </nav>
+    <div class="container">
+        <h2>Manage Blood Stock</h2>
+
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.blood_group }}
+            {{ form.units }}
+            <button type="submit">Update Stock</button>
+        </form>
+
+        <table>
+            <tr>
+                <th>Blood Group</th>
+                <th>Units Available</th>
+            </tr>
+            {% for stock in stocks %}
+            <tr>
+                <td>{{ stock.blood_group }}</td>
+                <td>{{ stock.units }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="2">No Blood Stock Available</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

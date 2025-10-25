@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Patient Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #e74c3c;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #c0392b;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            width: 35%;
+            max-width: 400px;
+            margin: 60px auto;
+            background-color: white;
+            padding: 30px;
+            box-shadow: 0 0 10px #ccc;
+            border-radius: 8px;
+        }
+        @media (max-width: 600px) {
+            .container { width: 90%; margin: 20px auto; }
+        }
+        h2 {
+            text-align: center;
+            color: #e74c3c;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin: 10px 0 5px 0;
+            font-weight: bold;
+        }
+        input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 12px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #c0392b;
+        }
+        /* Messages */
+        .messages { margin-bottom: 15px; }
+        .messages .success { background-color: #c8e6c9; color: #256029; padding: 10px; border-radius: 5px; margin-bottom: 5px; }
+        .messages .error { background-color: #ffcdd2; color: #c62828; padding: 10px; border-radius: 5px; margin-bottom: 5px; }
+        .messages .warning { background-color: #fff3cd; color: #856404; padding: 10px; border-radius: 5px; margin-bottom: 5px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Blood Bank Management System</h1>
+    </header>
+    <nav>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'donor_signup' %}">Donor Signup</a>
+        <a href="{% url 'donor_login' %}">Donor Login</a>
+        <a href="{% url 'patient_signup' %}">Patient Signup</a>
+    </nav>
+    <div class="container">
+        <h2>Patient Login</h2>
+
+        <!-- Django messages -->
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="{{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" required>
+
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" required>
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</body>
+</html>

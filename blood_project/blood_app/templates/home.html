@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Blood Bank Management System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    /* Reset and base styling */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(90deg, #ff0000, #b71c1c);
+      color: white;
+      text-align: center;
+      padding: 30px 15px;
+      font-size: 1.8em;
+      letter-spacing: 1px;
+    }
+
+    /* Navigation */
+    nav {
+      background-color: #d50000;
+      padding: 12px 10px;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: 500;
+      padding: 8px 14px;
+      border-radius: 5px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    nav a:hover {
+      background-color: white;
+      color: #b71c1c;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      background: url('https://cdn.pixabay.com/photo/2016/11/14/04/54/blood-1826048_1280.jpg') no-repeat center/cover;
+      color: red;
+      padding: 80px 10px;
+    }
+
+    .hero h1 {
+      font-size: 2.8em;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+    }
+
+    .hero p {
+      font-size: 1.2em;
+      margin-bottom: 25px;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+    }
+
+    .hero .btn {
+      display: inline-block;
+      background-color: #c0392b;
+      color: white;
+      padding: 12px 30px;
+      font-size: 18px;
+      border-radius: 8px;
+      text-decoration: none;
+      margin: 5px;
+      transition: background 0.3s;
+    }
+
+    .hero .btn:hover {
+      background-color: #b71c1c;
+    }
+
+    /* Common section layout */
+    .about, .compatibility, .modules, .awareness {
+      width: 95%;
+      max-width: 1200px;
+      margin: 50px auto;
+      background: white;
+      padding: 35px 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.08);
+    }
+
+    .about h2, .compatibility h2, .modules h2, .awareness-text h2 {
+      text-align: center;
+      color: #b71c1c;
+      margin-bottom: 20px;
+    }
+
+    .about p {
+      line-height: 1.7;
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+
+    /* Compatibility Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #b71c1c;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f8f8f8;
+    }
+
+    tr:hover {
+      background-color: #f2f2f2;
+    }
+
+    /* Modules Section */
+    .module-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .module-card {
+      background-color: #ffeaea;
+      border: 1px solid #f8c7c7;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .module-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .module-card h3 {
+      color: #b71c1c;
+      margin-bottom: 10px;
+    }
+
+    .module-card p {
+      font-size: 15px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    /* Awareness Section */
+    .awareness {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .awareness img {
+      flex: 1 1 350px;
+      border-radius: 10px;
+      width: 100%;
+      height: auto;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .awareness-text {
+      flex: 1 1 400px;
+    }
+
+    .awareness-text p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: #444;
+    }
+
+    .awareness-text strong {
+      color: #c0392b;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #b71c1c;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+      font-size: 0.95em;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.2em;
+      }
+      .hero p {
+        font-size: 1em;
+      }
+      nav a {
+        display: block;
+        margin: 8px 0;
+      }
+      .awareness {
+        flex-direction: column;
+      }
+      .about, .compatibility, .modules, .awareness {
+        width: 95%;
+        padding: 25px 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <h1>Blood Bank Management System</h1>
+    {% if user.is_authenticated %}
+      <p>Welcome, <strong>{{ request.user.first_name|default:request.user.username }}</strong> 🩸</p>
+    {% endif %}
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="{% url 'home' %}">Home</a>
+    <a href="{% url 'donor_signup' %}">Donor Signup</a>
+    <a href="{% url 'donor_login' %}">Donor Login</a>
+    <a href="{% url 'patient_signup' %}">Patient Signup</a>
+    <a href="{% url 'patient_login' %}">Patient Login</a>
+    {% if user.is_authenticated %}
+      <a href="{% url 'logout' %}">Logout</a>
+    {% endif %}
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Donate Blood, Save Lives ❤️</h1>
+    <p>Your small act of kindness can give someone a second chance at life.</p>
+    <a href="{% url 'donor_signup' %}" class="btn">Become a Donor</a>
+    <a href="{% url 'patient_signup' %}" class="btn">Request Blood</a>
+  </section>
+
+  <!-- About -->
+  <section class="about">
+    <h2>About Our System</h2>
+    <p>
+      The Blood Bank Management System simplifies the process of blood donation and management.
+      It connects donors and patients efficiently, ensuring that every drop counts. Donors can register and update their details,
+      while patients can easily request the required blood type.
+    </p>
+    <p>
+      The system maintains real-time information about available blood groups, ensuring hospitals and patients get instant updates.
+      It also helps reduce wastage and supports a well-organized healthcare workflow.
+    </p>
+    <p style="text-align:center; font-weight: bold; color: #c0392b;">
+      Together, we can make a difference — one donation at a time.
+    </p>
+  </section>
+
+  <!-- Compatibility -->
+  <section class="compatibility">
+    <h2>Blood Compatibility Chart</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Blood Group</th>
+          <th>Can Donate To</th>
+          <th>Can Receive From</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>O-</td><td>All Blood Groups (Universal Donor)</td><td>O-</td></tr>
+        <tr><td>O+</td><td>O+, A+, B+, AB+</td><td>O+, O-</td></tr>
+        <tr><td>A-</td><td>A-, A+, AB-, AB+</td><td>A-, O-</td></tr>
+        <tr><td>A+</td><td>A+, AB+</td><td>A+, A-, O+, O-</td></tr>
+        <tr><td>B-</td><td>B-, B+, AB-, AB+</td><td>B-, O-</td></tr>
+        <tr><td>B+</td><td>B+, AB+</td><td>B+, B-, O+, O-</td></tr>
+        <tr><td>AB-</td><td>AB-, AB+</td><td>A-, B-, AB-, O-</td></tr>
+        <tr><td>AB+</td><td>AB+ (Universal Receiver)</td><td>All Blood Groups</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Modules -->
+  <section class="modules">
+    <h2>Available Modules</h2>
+    <div class="module-grid">
+      <div class="module-card"><h3>Admin Module</h3><p>Admins can manage users, verify requests, and oversee operations.</p></div>
+      <div class="module-card"><h3>Donor Module</h3><p>Allows donors to register, log in, and record donation history.</p></div>
+      <div class="module-card"><h3>Patient Module</h3><p>Enables patients to request specific blood groups and track status.</p></div>
+      <div class="module-card"><h3>Blood Stock Management</h3><p>Manages availability of all blood groups in real time.</p></div>
+      <div class="module-card"><h3>Authentication & Security</h3><p>User login, signup, and secure data handling using Django authentication..</p></div>
+      <div class="module-card"><h3>Blood Request Management</h3><p>Handles patient requests and matches with available donors.</p></div>
+      <div class="module-card"><h3>Blood Donation</h3><p>Records blood donations, updates donor history and stock automatically.</p></div>
+      <div class="module-card"><h3> Distribution Module</h3><p>Handles issuance of blood to patients and updates request status and stock in real-time.</p></div>
+    </div>
+  </section>
+
+  <!-- Awareness -->
+  <section class="awareness">
+  
+    <div class="awareness-text">
+      <h2>The Need for Blood Donation</h2>
+      <p>
+        Every day, <strong>Thousands of people die</strong> due to insufficient blood availability during emergencies,
+        surgeries, and childbirth complications.
+      </p>
+      <p>
+        By donating blood, you’re not just giving a unit — you’re giving someone a chance to live.  
+        Your simple act of kindness can make a life-saving difference. ❤️
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>{{ now|date:"Y" }} Blood Bank Management System</p>
+  </footer>
+</body>
+</html>

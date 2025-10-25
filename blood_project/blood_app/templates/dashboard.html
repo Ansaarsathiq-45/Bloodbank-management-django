@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - Blood Bank</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #fe0000;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #de0e0e;
+            padding: 15px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            padding: 10px 15px;
+            border: 1px solid white;
+            border-radius: 5px;
+        }
+        nav a:hover {
+            background-color: white;
+            color: #b71c1c;
+        }
+
+        .button-bar {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .btn {
+            background-color: #c0392b;
+            color: white;
+            text-decoration: none;
+            padding: 14px 30px;
+            border-radius: 8px;
+            font-size: 18px;
+            margin: 10px;
+            display: inline-block;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background-color: #b71c1c;
+        }
+
+        .container {
+            width: 90%;
+            margin: 30px auto;
+        }
+        h2 {
+            color: #fe0000;
+            margin-bottom: 15px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 50px;
+            background-color: white;
+            box-shadow: 0 0 10px #ccc;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background-color: #c0392b;
+            color: white;
+        }
+        .section {
+            margin-bottom: 50px;
+        }
+
+        /* Messages */
+        .message {
+            text-align: center;
+            margin: 20px auto;
+            padding: 12px;
+            border-radius: 5px;
+            width: 80%;
+            font-weight: bold;
+        }
+        .success { background-color: #c8e6c9; color: #256029; }
+        .error { background-color: #ffcdd2; color: #c62828; }
+        .warning { background-color: #fff3cd; color: #856404; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Blood Bank Management Dashboard</h1>
+    </header>
+
+    <nav>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'donor_signup' %}">Donor Signup</a>
+        <a href="{% url 'patient_signup' %}">Patient Signup</a>
+
+    
+
+        <a href="{% url 'logout' %}">Logout</a>
+    </nav>
+
+    <!-- Welcome Message -->
+    <div style="text-align:center; margin: 20px auto; font-size: 22px; color:#b71c1c; font-weight:bold;">
+        Welcome, {{ user_name }}
+    </div>
+
+    <!-- Display messages -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="message {{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <!-- Donate & Request Buttons -->
+    <div class="button-bar">
+        <a href="{% url 'donate_blood' %}" class="btn">🩸 Donate Blood</a>
+        <a href="{% url 'blood_request' %}" class="btn">❤️ Request Blood</a>
+
+    </div>
+
+    <div class="container">
+
+        <!-- Donor List -->
+        <div class="section">
+            <h2>Donor List</h2>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Blood Group</th>
+                    <th>Contact</th>
+                    <th>Address</th>
+                </tr>
+                {% for donor in donors %}
+                <tr>
+                    <td>{{ donor.id }}</td>
+                    <td>{{ donor.name }}</td>
+                    <td>{{ donor.blood_group }}</td>
+                    <td>{{ donor.contact_number }}</td>
+                    <td>{{ donor.address }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5">No donors registered</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <!-- Patient List -->
+        <div class="section">
+            <h2>Patient List</h2>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Blood Group Needed</th>
+                    <th>Contact</th>
+                    <th>Address</th>
+                </tr>
+                {% for patient in patients %}
+                <tr>
+                    <td>{{ patient.id }}</td>
+                    <td>{{ patient.name }}</td>
+                    <td>{{ patient.blood_group }}</td>
+                    <td>{{ patient.contact_number }}</td>
+                    <td>{{ patient.address }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5">No patients registered</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <!-- Blood Stock -->
+        <div class="section">
+            <h2>Blood Stock</h2>
+            <table>
+                <tr>
+                    <th>Blood Group</th>
+                    <th>Units Available</th>
+                </tr>
+                {% for stock in stocks %}
+                <tr>
+                    <td>{{ stock.blood_group }}</td>
+                    <td>{{ stock.units }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="2">No blood stock available</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+    </div>
+</body>
+</html>

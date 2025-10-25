@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Request Blood</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fafafa;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #b71c1c;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            width: 400px;
+            background-color: white;
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
+        }
+        h2 {
+            text-align: center;
+            color: #b71c1c;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #aaa;
+        }
+        .errorlist {
+            color: red;
+            margin: -10px 0 10px 0;
+            list-style-type: none;
+            padding-left: 0;
+        }
+        button {
+            width: 100%;
+            background-color: #e53935;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #b71c1c;
+        }
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #b71c1c;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Request Blood</h1>
+    </header>
+
+    <div class="container">
+        <h2>Welcome, {{ patient.name }}</h2>
+        <p><strong>Your Blood Group:</strong> {{ patient.blood_group }}</p>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <label>Blood Group Needed:</label>
+            {{ form.blood_group }}
+            {% if form.blood_group.errors %}
+                <ul class="errorlist">
+                    {% for error in form.blood_group.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            <label>Units Needed (1-5):</label>
+            {{ form.units_requested }}
+            {% if form.units_requested.errors %}
+                <ul class="errorlist">
+                    {% for error in form.units_requested.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            <button type="submit">Request Blood</button>
+        </form>
+
+        <a href="{% url 'dashboard' %}">⬅ Back to Dashboard</a>
+    </div>
+</body>
+</html>
